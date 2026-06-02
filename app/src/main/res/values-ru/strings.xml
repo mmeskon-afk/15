@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Пятнашки</string>
+    <string name="game_title">Пятнашки</string>
+    <string name="shuffle_button">ПЕРЕМЕШАТЬ</string>
+    <string name="ai_button">ПОДСКАЗКА ИИ</string>
+    <string name="ai_thinking">Думаю...</string>
+    <string name="victory_ai_title">ИИ победил!</string>
+    <string name="victory_user_title">Поздравляем!</string>
+    <string name="victory_ai_message">ИИ успешно собрал пазл за вас.</string>
+    <string name="victory_user_message">Вы собрали пазл самостоятельно!</string>
+    <string name="dialog_ok">OK</string>
+
+    <!-- Добавленные строки для новых экранов -->
+    <string name="choose_difficulty">Выбери сложность:</string>
+    <string name="difficulty_label">Сложность: %1$s</string>
+    <string name="difficulty_easy">Легкий</string>
+    <string name="difficulty_medium">Средний</string>
+    <string name="difficulty_hard">Сложный</string>
+    <string name="start_game_button">Начать игру</string>
+    <string name="play_again_button">Играть еще</string>
+    <string name="moves_count">Ходов: %1$d</string>
+    <string name="moves_performed">Выполнено ходов: %1$d</string>
+    <string name="puzzle_solved_prefix">Пазл собран: </string>
+    <string name="solved_self">самостоятельно</string>
+    <string name="solved_with_ai">с подсказками ИИ</string>
+    <string name="victory_title">Победа!</string>
+    <string name="victory_ai_screen_title">Собрано ИИ!</string>
+</resources>

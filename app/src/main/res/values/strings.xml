@@ -1,3 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">15</string>
+    <string name="app_name">Fifteen Puzzle</string>
+    <string name="game_title">Fifteen Puzzle</string>
+    <string name="shuffle_button">SHUFFLE</string>
+    <string name="ai_button">AI HINT</string>
+    <string name="ai_thinking">Thinking...</string>
+    <string name="victory_ai_title">AI won!</string>
+    <string name="victory_user_title">Congratulations!</string>
+    <string name="victory_ai_message">AI successfully solved the puzzle for you.</string>
+    <string name="victory_user_message">You solved the puzzle yourself!</string>
+    <string name="dialog_ok">OK</string>
+
+    <!-- Добавленные строки для новых экранов -->
+    <string name="choose_difficulty">Select difficulty:</string>
+    <string name="difficulty_label">Difficulty: %1$s</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="start_game_button">Start Game</string>
+    <string name="play_again_button">Play Again</string>
+    <string name="moves_count">Moves: %1$d</string>
+    <string name="moves_performed">Moves performed: %1$d</string>
+    <string name="puzzle_solved_prefix">Puzzle solved: </string>
+    <string name="solved_self">by yourself</string>
+    <string name="solved_with_ai">with AI hints</string>
+    <string name="victory_title">Victory!</string>
+    <string name="victory_ai_screen_title">Solved by AI!</string>
 </resources>

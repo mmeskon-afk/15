@@ -5,16 +5,14 @@ plugins {
 
 android {
     namespace = "com.example.ai_google_15"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.ai_google_15"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 9
+        versionName = "1.08"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,14 +52,15 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // Для работы ViewModel в Compose (исправляет Unresolved reference 'viewModel')
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    // ViewModel + Coroutines (Выровнены версии для исключения конфликтов)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
-    // Для базовых компонентов Compose (исправляет Unresolved reference 'compose')
-    implementation("androidx.compose.ui:ui:1.5.4")
-    implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("androidx.activity:activity-compose:1.8.1")
+    // YANDEX MOBILE ADS SDK 8.0.0
+    implementation("com.yandex.android:mobileads:8.0.0")
+    implementation("com.yandex.android:mobileads-compose:8.0.0")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0") // Для viewModelScope
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0") // Или последняя версия
+    // Navigation Compose
+    implementation("androidx.navigation:navigation-compose:2.8.8")
 }
