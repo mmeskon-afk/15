@@ -17,6 +17,9 @@
     <string name="difficulty_easy">Легкий</string>
     <string name="difficulty_medium">Средний</string>
     <string name="difficulty_hard">Сложный</string>
+    <string name="difficulty_easy_desc">Перемешивание на 50 ходов</string>
+    <string name="difficulty_medium_desc">Перемешивание на 100 ходов</string>
+    <string name="difficulty_hard_desc">Перемешивание на 200 ходов</string>
     <string name="start_game_button">Начать игру</string>
     <string name="play_again_button">Играть еще</string>
     <string name="moves_count">Ходов: %1$d</string>

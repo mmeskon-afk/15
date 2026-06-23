@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GigaCodeAgentSettings">
+    <option name="autoApproveEdits" value="true" />
+    <option name="autoApprovedCommands">
+      <list>
+        <Execute>
+          <option name="pattern" value="cd D:/AndroidStudioProjects/AI_google_15 &amp;&amp; ./gradlew assembleDebug" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:/AndroidStudioProjects/AI_google_15; .\gradlew.bat assembleDebug" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; .\gradlew.bat assembleDebug" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15 &amp;&amp; git diff app/src/main/java/com/example/ai_google_15/ui/screen/MenuScreen.kt" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; git diff app/src/main/java/com/example/ai_google_15/ui/screen/MenuScreen.kt" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; git status" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; git log --oneline -5" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; git show cdadf25:app/src/main/java/com/example/ai_google_15/MenuScreen.kt &gt; temp_menu_original.kt" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; git ls-tree -r cdadf25 --name-only | findstr Menu" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; git ls-tree -r cdadf25 --name-only" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; Remove-Item -Force temp_menu_original.kt -ErrorAction SilentlyContinue" />
+        </Execute>
+      </list>
+    </option>
+  </component>
+</project>

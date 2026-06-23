@@ -2,48 +2,96 @@ package com.example.ai_google_15.ui.theme
 
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 // ==========================================
-// ========== ИСХОДНАЯ ДИЗАЙН-ПАЛИТРА ======
+// ========== ДИЗАЙН-ПАЛИТРА ================
 // ==========================================
 
-val BackgroundScreen = Color(0xFFF9F6F0)   // Основной фон экрана
-val GridBackground = Color(0xFFE5E0D5)    // Фон под плитками (сетка)
-val TileNormal = Color(0xFF8E9A7F)        // Цвет обычных плиток
-val TileCorrect = Color(0xFF7CB342)       // Плитка на правильном месте
-val EmptyCell = Color(0xFFF0EDE5)         // Пустая ячейка
-val TextOnTile = Color(0xFFFFFFFF)        // Текст на плитках (белый)
+// Фоны
+val BackgroundScreen = Color(0xFFF5F7FA)
+val GridBackground = Color(0xFFE5E0D5)
+val EmptyCell = Color(0xFFF0EDE5)
 
-// Цвета кнопок
-val ShuffleButtonColor = Color(0xFFFFF59D)   // Цвет кнопки "перемешать"
-val AiButtonColor = Color(0xFFAED581)        // Цвет кнопки "запустить ИИ"
+// Плитки
+val TileNormal = Color(0xFF3F51B5)
+val TileCorrect = Color(0xFF2196F3)
+val TextOnTile = Color(0xFFFFFFFF)
+val TileGold = Color(0xFFFFC107)
+val TextOnGold = Color(0xFF1A1A2E)
 
-// Дополнительные цвета элементов
-val ButtonText = Color(0xFF000000)           // ТЕКСТ НА КНОПКАХ СТАЛ ЧЕРНЫМ
-val TitleText = Color(0xFF3A6B8C)            // Название игры (заголовок)
+// Кнопки (единый акцент)
+val AccentColor = Color(0xFF2196F3)
+val AccentColorDark = Color(0xFF1976D2)
 
-// ========== УСТАРЕВШИЕ ЦВЕТА (для совместимости) ==========
-val BeigeBackground = Color(0xFFFADCAF)
-val EmptyGray = Color(0xFFD3D3D3)
-val BlackText = Color(0xFF000000)
-val OakBog = Color(0xFF3F3F3F)
-val textTiles = Color(0xFFFFFFFF)
-val square = Color(0xFFEF9A9A)
+// Текст
+val TitleText = Color(0xFF1A1A2E)
+val BodyText = Color(0xFF1A1A2E)
+val SubtleText = Color(0xFF6C757D)
 
-val TileGold = Color(0xFFFFD700)      // Золотой цвет для анимации победы
-val TextOnGold = Color(0xFF3E2723)    // Темно-коричневый текст для контраста на золотом
+// Для компонентов
+val TextPrimary = Color(0xFF1A1A2E)
+val TextSecondary = Color(0xFF6C757D)
 
+// Звёзды
+val StarGold = Color(0xFFFBC02D)
+val StarEmpty = Color(0xFF9E9E9E)
 
+// Сложность (для карточек)
+val DifficultyEasy = Color(0xFF4CAF50)
+val DifficultyMedium = Color(0xFFFF9800)
+val DifficultyHard = Color(0xFFE91E63)
+
+// ==========================================
+// ========== ДИЗАЙН-ТОКЕНЫ ================
+// ==========================================
+
+object Dimens {
+    // Скругления - для более чистого внешнего вида
+    val CornerSmall = 16.dp
+    val CornerMedium = 20.dp
+    val CornerLarge = 24.dp
+    val CornerXLarge = 32.dp
+
+    // Отступы - для лучшего баланса
+    val PaddingXS = 8.dp
+    val PaddingS = 12.dp
+    val PaddingM = 16.dp
+    val PaddingL = 24.dp
+    val PaddingXL = 32.dp
+    val PaddingXXL = 40.dp
+    val PaddingXXXL = 48.dp
+
+    // Высоты кнопок
+    val ButtonHeight = 56.dp
+
+    // Размеры элементов
+    val CardNumberSize = 56.dp
+    val TilePadding = 8.dp
+    val BoardPadding = 12.dp
+    val TileTextSize = 32.sp
+    val CardDifficultyTextSize = 20.sp
+    val CardCheckmarkSize = 24.sp
+    val TextMedium = 14.sp
+}
+
+// ==========================================
 // ========== СХЕМА ЦВЕТОВ MATERIAL 3 =======
-val GameLightColorScheme = lightColorScheme(
-    surface = BackgroundScreen,
-    surfaceVariant = GridBackground,
-    secondaryContainer = TileNormal,
-    onSecondaryContainer = TextOnTile,
+// ==========================================
+
+val LightColorScheme = lightColorScheme(
     primaryContainer = TileCorrect,
     onPrimaryContainer = TextOnTile,
-    onSecondary = ButtonText,
-    onSurface = TitleText,
+    background = BackgroundScreen,
+    onBackground = BodyText,
+    surface = BackgroundScreen,
+    onSurface = BodyText,
+    surfaceVariant = GridBackground,
+    onSurfaceVariant = BodyText,
+    secondaryContainer = TileNormal,
+    onSecondaryContainer = TextOnTile,
+    onSecondary = BodyText,
     tertiary = TileCorrect,
     onTertiary = TextOnTile
 )
