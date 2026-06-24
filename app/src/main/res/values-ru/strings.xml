@@ -29,4 +29,5 @@
     <string name="solved_with_ai">с подсказками ИИ</string>
     <string name="victory_title">Победа!</string>
     <string name="victory_ai_screen_title">Собрано ИИ!</string>
+    <string name="reset_button">Сбросить игру</string>
 </resources>

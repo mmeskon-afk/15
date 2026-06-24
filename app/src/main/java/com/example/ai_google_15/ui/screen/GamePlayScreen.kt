@@ -10,6 +10,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
@@ -106,14 +107,12 @@ fun GamePlayScreen(
                     ) {
                         InfoCard(
                             title = stringResource(R.string.difficulty_label, difficulty),
-                            value = "",
-                            icon = null
+                            value = ""
                         )
                         Spacer(modifier = Modifier.height(Dimens.PaddingS))
                         InfoCard(
                             title = stringResource(R.string.moves_count, viewModel.moveCount),
-                            value = "",
-                            icon = null
+                            value = ""
                         )
                         Spacer(modifier = Modifier.height(Dimens.PaddingM))
                         GameControls(
@@ -141,14 +140,12 @@ fun GamePlayScreen(
                         ) {
                             InfoCard(
                                 title = stringResource(R.string.difficulty_label, difficulty),
-                                value = "",
-                                icon = null
+                                value = ""
                             )
                             Spacer(modifier = Modifier.height(Dimens.PaddingXS))
                             InfoCard(
                                 title = stringResource(R.string.moves_count, viewModel.moveCount),
-                                value = "",
-                                icon = null
+                                value = ""
                             )
                         }
                     }
@@ -196,7 +193,7 @@ fun GamePlayScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .height(Dimens.BannerHeight)
+                    .height(64.dp)
                     .padding(bottom = 8.dp)
             ) {
                 YandexBannerAd(adUnitId = "R-M-19272453-2", modifier = Modifier.fillMaxWidth())
@@ -229,8 +226,7 @@ fun GamePlayScreen(
 @Composable
 private fun InfoCard(
     title: String,
-    value: String,
-    icon: com.google.accompanist.systemuicontroller.rememberSystemUiController?
+    value: String
 ) {
     Card(
         modifier = Modifier

@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.example.ai_google_15.R
 import com.example.ai_google_15.ui.component.YandexBannerAd
 import com.example.ai_google_15.ui.theme.*
+import com.example.ai_google_15.ui.theme.Dimens
 
 /**
  * Адаптивный экран победы

@@ -29,4 +29,5 @@
     <string name="solved_with_ai">with AI hints</string>
     <string name="victory_title">Victory!</string>
     <string name="victory_ai_screen_title">Solved by AI!</string>
+    <string name="reset_button">Reset game</string>
 </resources>
