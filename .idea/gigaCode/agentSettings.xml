@@ -37,6 +37,33 @@
         <Execute>
           <option name="pattern" value="cd D:\AndroidStudioProjects\AI_google_15; Remove-Item -Force temp_menu_original.kt -ErrorAction SilentlyContinue" />
         </Execute>
+        <Execute>
+          <option name="pattern" value="git status &amp;&amp; git log -n 3 --oneline" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git status" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git remote -v" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git add ." />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git diff --staged --stat" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git log -n 3 --oneline" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git commit -m &quot;Refactor: Restructure project with MVVM architecture&#10;&#10;- Reorganized codebase: domain/, ui/, viewmodel/ directories&#10;- Implemented proper GameLogic.kt with A* AI solver&#10;- Created modular UI components (GameBoard, GameControls, VictoryDialog, YandexBannerAd)&#10;- Added navigation composable (AppNavigation)&#10;- Implemented GameViewModel with state management&#10;- Updated theme system with Color.kt and Dimens&#10;- Added unit tests for GameLogic and GameViewModel&#10;- Fixed import duplicates in GameBoard&#10;- Improved Yandex Mobile Ads integration&#10;- Restructured menu, game play, and result screens&#10;- Updated launcher icons and resources&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git push origin master" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="git log --oneline -5" />
+        </Execute>
       </list>
     </option>
   </component>

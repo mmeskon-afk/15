@@ -25,13 +25,17 @@ import androidx.compose.ui.unit.sp
 import com.example.ai_google_15.ui.theme.Dimens
 import com.example.ai_google_15.ui.theme.TextOnGold
 import com.example.ai_google_15.ui.theme.TileGold
-import com.example.ai_google_15.ui.theme.TextOnGold
-import com.example.ai_google_15.ui.theme.TileGold
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
 private const val TAG = "GameBoard"
 
+/**
+ * Адаптивное игровое поле
+ * - Поддерживает все ориентации (portrait/landscape)
+ * - Автоматически подстраивается под размер экрана
+ * - Работает на устройствах с любым соотношением сторон
+ */
 @Composable
 fun GameBoard(
     tiles: List<Int>,
@@ -45,11 +49,14 @@ fun GameBoard(
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     val density = LocalDensity.current
 
+    // Адаптивный размер доски: максимум 360dp, минимум 280dp
     var boardSizePx by remember { mutableStateOf(0f) }
-    var boardSizeDp by remember { mutableStateOf(320.dp) }
+    var boardSizeDp by remember { mutableStateOf(Dimens.MaxBoardSize) }
 
+    // Рассчитываем размер одной плитки
     val tileSizePx = if (boardSizePx > 0f) boardSizePx / 4f else 1f
 
+    // Состояния для свайпов
     var dragAmountX by remember { mutableStateOf(0f) }
     var dragAmountY by remember { mutableStateOf(0f) }
 
@@ -57,12 +64,15 @@ fun GameBoard(
     var emptyTileIndex by remember { mutableStateOf(-1) }
     var initialSwipeDirection by remember { mutableStateOf("") }
 
+    // Адаптивный модификатор для доски
     val boardModifier = if (isLandscape) {
         Modifier
-            .aspectRatio(1f)
+            .aspectRatio(Dimens.BoardAspectRatio)
             .padding(Dimens.PaddingXS)
     } else {
-        Modifier.size(320.dp)
+        Modifier
+            .sizeIn(maxWidth = Dimens.MaxBoardSize, maxHeight = Dimens.MaxBoardSize)
+            .sizeIn(minWidth = Dimens.MinBoardSize, minHeight = Dimens.MinBoardSize)
     }
 
     Box(
@@ -177,7 +187,12 @@ fun GameBoard(
                     val baseOffsetX = baseCol * singleTileSizeDp.value
                     val baseOffsetY = baseRow * singleTileSizeDp.value
 
-                    val fontSize = if (boardSizeDp < 260.dp) 16.sp else 22.sp
+                    // Адаптивный размер текста в зависимости от размера доски
+                    val fontSize = when {
+                        boardSizeDp < 260.dp -> 16.sp
+                        boardSizeDp < 300.dp -> 18.sp
+                        else -> 22.sp
+                    }
 
                     Box(
                         modifier = Modifier

@@ -1,5 +1,6 @@
 package com.example.ai_google_15.ui.screen
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
@@ -26,6 +27,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -35,19 +37,140 @@ import com.example.ai_google_15.R
 import com.example.ai_google_15.ui.component.YandexBannerAd
 import com.example.ai_google_15.ui.theme.*
 
-private data class DifficultyOption(
-    val key: String,
-    val labelRes: Int,
-    val descriptionRes: Int,
-    val color: Color,
-    val icon: ImageVector
-)
+/**
+ * Адаптивное главное меню
+ * - Оптимизировано для всех размеров экранов
+ * - Поддерживает portrait и landscape режимы
+ * - Работает на телефонах и планшетах
+ */
+@Composable
+fun MainMenuScreen(
+    on-startGame: (String) -> Unit
+) {
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-private fun difficultyOptions(): List<DifficultyOption> = listOf(
-    DifficultyOption("easy", R.string.difficulty_easy, R.string.difficulty_easy_desc, DifficultyEasy, Icons.Outlined.Bolt),
-    DifficultyOption("medium", R.string.difficulty_medium, R.string.difficulty_medium_desc, DifficultyMedium, Icons.Outlined.Speed),
-    DifficultyOption("hard", R.string.difficulty_hard, R.string.difficulty_hard_desc, DifficultyHard, Icons.Outlined.LocalFireDepartment)
-)
+    val options = difficultyOptions()
+    val easyStr = stringResource(R.string.difficulty_easy)
+    val mediumStr = stringResource(R.string.difficulty_medium)
+    val hardStr = stringResource(R.string.difficulty_hard)
+
+    val labelMap = remember(easyStr, mediumStr, hardStr) {
+        mapOf("easy" to easyStr, "medium" to mediumStr, "hard" to hardStr)
+    }
+
+    var selectedKey by rememberSaveable { mutableStateOf("medium") }
+
+    val primaryGradient = Brush.verticalGradient(
+        colors = listOf(
+            MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f),
+            MaterialTheme.colorScheme.background
+        )
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(primaryGradient)
+                .padding(horizontal = if (isLandscape) 24.dp else 24.dp)
+                .padding(top = 48.dp)
+                .windowInsetsPadding(WindowInsets.systemBars)
+        ) {
+            // Заголовок игры
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(if (isLandscape) 0.3f else 0.4f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = stringResource(R.string.game_title),
+                    style = MaterialTheme.typography.displaySmall.copy(
+                        fontWeight = FontWeight.Black,
+                        letterSpacing = 1.sp
+                    ),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(
+                    text = stringResource(R.string.choose_difficulty),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            // Карточки сложности
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.4f)
+                    .padding(horizontal = if (isLandscape) 16.dp else 24.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                options.forEach { option ->
+                    DifficultyCard(
+                        option = option,
+                        isSelected = selectedKey == option.key,
+                        label = labelMap[option.key] ?: "",
+                        description = stringResource(option.descriptionRes),
+                        onClick = { selectedKey = option.key }
+                    )
+                }
+            }
+
+            // Кнопка старта
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.2f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Button(
+                    onClick = {
+                        val diffLabel = labelMap[selectedKey] ?: mediumStr
+                        on-startGame(diffLabel)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .height(56.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.start_game_button),
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                    )
+                }
+            }
+        }
+
+        // Реклама внизу
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .height(Dimens.BannerHeight)
+                .navigationBarsPadding()
+        ) {
+            YandexBannerAd(adUnitId = "R-M-19272453-2", modifier = Modifier.fillMaxWidth())
+        }
+    }
+}
 
 @Composable
 private fun DifficultyCard(
@@ -144,114 +267,6 @@ private fun DifficultyCard(
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun MainMenuScreen(onStartGame: (String) -> Unit) {
-    val options = difficultyOptions()
-    val easyStr = stringResource(R.string.difficulty_easy)
-    val mediumStr = stringResource(R.string.difficulty_medium)
-    val hardStr = stringResource(R.string.difficulty_hard)
-
-    val labelMap = remember(easyStr, mediumStr, hardStr) {
-        mapOf("easy" to easyStr, "medium" to mediumStr, "hard" to hardStr)
-    }
-
-    var selectedKey by rememberSaveable { mutableStateOf("medium") }
-
-    val primaryGradient = Brush.verticalGradient(
-        colors = listOf(
-            MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f),
-            MaterialTheme.colorScheme.background
-        )
-    )
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .background(primaryGradient)
-                .padding(horizontal = 24.dp)
-                .statusBarsPadding(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(48.dp))
-
-            Text(
-                text = stringResource(R.string.game_title),
-                style = MaterialTheme.typography.displaySmall.copy(
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 1.sp
-                ),
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = stringResource(R.string.choose_difficulty),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                options.forEach { option ->
-                    DifficultyCard(
-                        option = option,
-                        isSelected = selectedKey == option.key,
-                        label = labelMap[option.key] ?: "",
-                        description = stringResource(option.descriptionRes),
-                        onClick = { selectedKey = option.key }
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Button(
-                onClick = {
-                    val diffLabel = labelMap[selectedKey] ?: mediumStr
-                    onStartGame(diffLabel)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary
-                ),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.start_game_button),
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
-                )
-            }
-        }
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .navigationBarsPadding()
-                .height(64.dp),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            YandexBannerAd(adUnitId = "R-M-19272453-2", modifier = Modifier.fillMaxSize())
         }
     }
 }

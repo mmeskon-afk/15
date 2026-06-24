@@ -42,5 +42,20 @@ val Typography = Typography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp
+    ),
+    // Стиль для заголовков экранов
+    displayMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Black,
+        fontSize = 28.sp,
+        letterSpacing = 1.sp,
+        textAlign = TextAlign.Center
+    ),
+    // Стиль для кнопок
+    titleLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        letterSpacing = 0.5.sp
     )
 )
